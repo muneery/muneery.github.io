@@ -159,7 +159,7 @@
             });
 
             $.get("https://xkcd.com/info.0.json", function(data) {
-                $("#response").append("<img src='" + data.img + "' alt='xkcd image'>");
+                $("#xkcd-comic").append("<img src='" + data.img + "' alt='" + data.alt + "'>");
             });
 
             async function guessAge(name) {
