@@ -12,7 +12,7 @@
         .header { background-color: #dc3545; color: white; padding: 30px; text-align: center; }
         .section { padding: 50px 0; }
         .skills { background-color: #6c757d; color: white; }
-        .experience { background-color: #f8f9fa; }
+        .experience, .education, .projects-certificates { background-color: #f8f9fa; }
         .footer { background-color: #343a40; padding: 20px 0; text-align: center; }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -23,8 +23,10 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                 <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects-certificates">Projects/Certificates</a></li>
                 <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
             </ul>
         </div>
@@ -39,18 +41,69 @@
         <script type="text/javascript" src="email.js"></script>
     </div>
 
+    <div class="container section education" id="education">
+        <h2>Education</h2>
+        <ul>
+            <li><strong>Bachelor of Science in Computer Science</strong>, University Name (Graduation Year)</li>
+            <li><strong>Master of Science in Software Engineering</strong>, University Name (Graduation Year)</li>
+        </ul>
+    </div>
+
     <div class="container section experience" id="experience">
         <h2>Experience</h2>
-        <p>Details about your professional experience go here.</p>
+        <ul>
+            <li><strong>Software Developer</strong>, Company Name (Start Year - End Year)
+                <ul>
+                    <li>Developed and maintained web applications using JavaScript, HTML, and CSS</li>
+                    <li>Collaborated with cross-functional teams to deliver high-quality software products</li>
+                </ul>
+            </li>
+            <li><strong>Intern</strong>, Another Company (Start Year - End Year)
+                <ul>
+                    <li>Assisted in the development of a mobile application using React Native</li>
+                    <li>Conducted code reviews and provided feedback to junior developers</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 
     <div class="container section skills" id="skills">
         <h2>Skills</h2>
-        <p>Details about your skills go here.</p>
+        <ul>
+            <li>Programming Languages: JavaScript, Python, Java</li>
+            <li>Web Development: HTML, CSS, Bootstrap, React</li>
+            <li>Database Management: MySQL, MongoDB</li>
+            <li>Tools: Git, Docker, Jenkins</li>
+        </ul>
+    </div>
+
+    <div class="container section projects-certificates" id="projects-certificates">
+        <h2>Projects and Certificates</h2>
+        <h3>Projects</h3>
+        <ul>
+            <li><strong>Personal Portfolio Website</strong>
+                <ul>
+                    <li>Developed a personal portfolio website using HTML, CSS, and JavaScript</li>
+                    <li>Implemented responsive design to ensure compatibility across devices</li>
+                </ul>
+            </li>
+            <li><strong>Weather Forecast Application</strong>
+                <ul>
+                    <li>Created a weather forecast application using React and OpenWeatherMap API</li>
+                    <li>Integrated real-time weather data and dynamic user interface</li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Certificates</h3>
+        <ul>
+            <li><strong>Certified JavaScript Developer</strong>, Issuing Organization (Year)</li>
+            <li><strong>Professional Scrum Master</strong>, Issuing Organization (Year)</li>
+        </ul>
     </div>
 
     <div class="container section" id="projects">
-        <h2>Projects and Other Information</h2>
+        <h2>Additional Projects and Information</h2>
+        <p><a href="waph.html">Web Application Programming and Hacking Course Projects</a></p>
         <div id="digit-clock"></div>
         <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
         <script src="https://waph-uc.github.io/clock.js"></script>
@@ -76,6 +129,16 @@
             $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
                 console.log("From jokeAPI: " + JSON.stringify(result));
                 $("#response").html("A programming joke of the day: " + result.joke);
+                setTimeout(function() {
+                    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+                        console.log("From jokeAPI: " + JSON.stringify(result));
+                        $("#response").html("A programming joke of the day: " + result.joke);
+                    });
+                }, 60000); // 1 minute
+            });
+
+            $.get("https://xkcd.com/info.0.json", function(data) {
+                $("#response").append("<img src='" + data.img + "' alt='xkcd image'>");
             });
 
             async function guessAge(name) {
