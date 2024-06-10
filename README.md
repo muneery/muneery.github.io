@@ -23,7 +23,7 @@ This repository belongs to Muneer which is private to store source codes practic
 
 [https://muneery.github.io/](https://muneery.github.io/)
 
-### index.html information
+### waph.html information
 
 [https://muneery.github.io/waph.html](https://muneery.github.io/waph.html)
  
