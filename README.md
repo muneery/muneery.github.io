@@ -11,7 +11,7 @@
  
 **Short-bio**: I am a computer science student with keen interests in ethical hacking.
  
-![Muneer's headshot](ubuntui01.png)
+![Muneer's headshot](headshot.jpg)
  
 ## Repository Information
  
