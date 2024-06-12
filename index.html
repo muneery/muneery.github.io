@@ -157,9 +157,11 @@
                     });
                 }, 60000); // 1 minute
             });
-
-            $.get("https://xkcd.com/info.0.json", function(data) {
-                $("#response").append("<img src='" + data.img + "' alt='xkcd image'>");
+            
+            $(document).ready(function() {
+                $.get("https://xkcd.com/info.0.json", function(data) {
+                    $("#xkcd-comic").html("<img src='" + data.img + "' alt='" + data.alt + "'>");
+                });
             });
 
             async function guessAge(name) {
