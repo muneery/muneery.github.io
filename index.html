@@ -122,6 +122,15 @@
         </ul>
     </div>
 
+    <div class="col-3 text-white">
+            <div id="weatherContainer">
+                <h2>Current Weather:</h2>
+                <img id="weatherIcon" src="" alt="Weather icon" style="width: 50px; height: 50px;">
+                <p id="weatherDesc"></p>
+                <p id="weatherTemp"></p>
+            </div>
+        </div>
+
     <div class="container section" id="projects">
         <h2>Additional Projects and Information</h2>
         <p><a href="waph.html" target="_blank">Web Application Programming and Hacking Course Projects</a></p>
@@ -146,6 +155,34 @@
                 drawNumbers(ctx, radius);
                 drawTime(ctx, radius);
             }
+
+            function fetchWeather() {
+            const apiKey = 'e46e438496ab42e9b1a1b312e9f459a0'; 
+            const url = https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=${apiKey}&include=minutely;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data && data.data.length > 0) {
+                        const weather = data.data[0];
+                        document.getElementById('weatherIcon').src = https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png;
+                        document.getElementById('weatherDesc').textContent = weather.weather.description;
+                        document.getElementById('weatherTemp').textContent = Temperature: ${weather.temp}°C;
+                    } else {
+                        document.getElementById('weatherDesc').textContent = "Weather data not available.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching weather:', error);
+                    document.getElementById('weatherDesc').textContent = "An error occurred. Couldn't fetch weather data.";
+                });
+        }
+        fetchWeather();
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + value + ";expires=" + expires.toUTCString() + ";path=/";
+        }
 
             $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
                 console.log("From jokeAPI: " + JSON.stringify(result));
