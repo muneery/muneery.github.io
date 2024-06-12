@@ -128,6 +128,7 @@
         <div id="digit-clock"></div>
         <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
         <script src="https://waph-uc.github.io/clock.js"></script>
+        <div id="weather"></div>
         <script>
             function displayTime() {
                 document.getElementById('digit-clock').innerHTML = "Current time:" + new Date();
@@ -159,8 +160,17 @@
             });
             
             $(document).ready(function() {
-                $.get("https://xkcd.com/info.0.json", function(data) {
-                    $("#xkcd-comic").html("<img src='" + data.img + "' alt='" + data.alt + "'>");
+                const apiKey = '79ffcbdfee96479abad14f1b44f44635';
+                const city = 'Cincinnati';
+                $.get(`https://api.weatherbit.io/v2.0/current?city=${city}&key=${apiKey}`, function(data) {
+                    const weather = data.data[0];
+                    const weatherHtml = `
+                    <h3>Current Weather in ${city}</h3>
+                    <p>Temperature: ${weather.temp}°C</p>
+                    <p>Description: ${weather.weather.description}</p>
+                    <img src="https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png" alt="Weather icon">
+                    `;
+                    $("#weather").html(weatherHtml);
                 });
             });
 
